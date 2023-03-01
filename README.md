@@ -2,7 +2,7 @@
 
 В конфиге moonraker.conf нужно добавить секцию
 
-[spool_event]
+[spool_event]<br>
 printer_serial: UltiSteel
 
 Серийный номер принтера нужен для много принтерных систем.
