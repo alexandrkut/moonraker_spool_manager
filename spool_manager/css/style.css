@@ -1,0 +1,458 @@
+a {
+color: black;
+}
+
+#error {
+text-align: center;
+float: none;
+background: pink;
+}
+#noaccess{
+text-align: center;
+float: none;
+background: red;
+  
+}
+
+#main {
+width: 930px;
+position: relative;
+}
+
+#login_main {
+display: inline-block;
+text-align: center;
+border: 0px solid blue; 
+position:relative;
+top:3%;
+height:200px;
+width:200px;
+
+}
+
+
+#login_info {
+  float: right;
+  text-align:right;
+   z-index: 1000;
+}
+#other {
+vertical-align: top;
+display: inline-block;
+border: solid 1px;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+}
+#credits{
+border: solid 1px;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+background-color: #F778A1;
+}
+
+#rashod{
+display: inline-block;
+vertical-align: top;
+border: solid 1px;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+background-color: pink;
+}
+
+#prihod{
+display: inline-block;
+vertical-align: top;
+border: solid 1px;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+background-color: lightgreen;
+}
+
+#otchet{
+vertical-align: top;
+display: inline-block;
+border: solid 1px;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+
+}
+
+#admin{
+display: inline-block;
+vertical-align: top;
+display: inline-block;
+border: solid 1px red;
+padding: 10px;
+margin: 10px;
+width: 300px;
+text-align: center;
+
+}
+
+
+button {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+width:100%;
+margin:10px;
+ text-align: center;
+  text-decoration: none;
+  font-size : 2em;
+}
+button:hover {
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+background-color: #eee;
+}
+
+
+.button {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+width:100%;
+margin:3px;
+  font-size : 2em;
+
+}
+
+.button:hover {
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+background-color: #eee;
+}
+
+.izmen {
+font-size : 1em;
+width:30px;	
+margin: 1px;
+margin-left: 5px;
+margin-right: 5px;
+}
+
+
+
+
+table { 
+    width: 100%; /* Ширина таблицы */
+    border-collapse: collapse;
+    border-spacing: 0; /* Расстояние между ячейками */
+     table-layout: fixed; /* Фиксированная ширина ячеек */
+     text-align: right;
+     padding: 10px;
+ }
+  
+
+.tovar{
+	margin:5px;
+}
+   
+input {
+width: 40%;
+font-size: 2em;
+}
+
+input[type=number] {
+	float:right;
+
+}
+select {
+	width: 55%;
+	font-size: 2em;
+
+}
+textarea {
+	width: 40%;
+	font-size: 2em;
+	margin:5px;
+	float:right;
+}
+label {
+	width: 40%;
+	font-size: 2em;
+}
+
+.descr{
+	font-size: 2em;
+	font-weight: bold;
+}
+.filed{
+	width: 48%;
+	}
+
+#drugio_rashod{
+padding: 10px;
+background: #ccc;
+width: 250px;
+} 
+
+.plan {
+  color: blue;
+}
+
+.fact {
+  color:fuchsia; 
+}
+
+.green_button{
+background: lightgreen;
+}
+
+.blue_button {
+background: Aqua;
+}
+
+
+
+   .plan_border {     border: 2px solid fuchsia; }
+   .fact_border {     border: 2px solid blue; }
+   
+   
+   .col_name {  width: 180px;
+   word-wrap: break-word;}  
+   
+   .coln {  width: 80px;
+   word-wrap: break-word;}    
+   .col_chto {  width: 55px;
+   word-wrap: break-word;}
+   
+   .col_itogo {  width: 180px;
+   word-wrap: break-word;}
+   
+      .col_stoim {  width: 95px;
+   word-wrap: break-word;}    
+    
+.main {
+  padding: 10px;
+}
+   
+
+   .tabl:nth-child(2n) {
+    background: #f0f0f0; 
+   } 
+   .tabl:nth-child(1) {
+//    background: #666; 
+//    color: #fff;
+   }
+ 
+
+
+tr.table_header { background: #d0d0d0; 
+  text-align: center;}
+
+
+
+
+#delete {
+    color: red;
+     font-weight: bold;
+        } 
+        
+.delete_on {
+    color: black;
+    background-color: #ff0000;
+}
+
+.delete_off {
+    color: red;
+    background-color: #ffffff;
+}
+
+
+.override_date_on {
+    background-color: lightpink;
+}
+
+.override_date_off {
+    background-color: #ffffff;
+}
+
+
+.edit_button {
+    color: black;
+    display: block;
+    height: 100%;
+    line-height: 100%;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+}
+.edit_button:hover {
+  opacity:0.7;
+}
+
+.field {
+clear:both; 
+text-align:right; 
+margin-top:3px;
+margin-bottom:3px; 
+}
+
+label {float:left; width: 420px; text-align: left}
+.main {float:left}
+
+.lightgreen {
+  background:lightgreen; 
+}
+
+.lightpink {
+  background:lightpink; 
+}
+
+.green {
+  background:green; 
+}
+
+.red_f {
+  color: red;
+}
+.red_bg {
+  background-color: LightPink;
+}
+.yellow_bg {
+  background-color: LightYellow;
+}
+.green_bg{
+background-color: LightGreen;	
+}
+
+.green_f {
+  color:green; 
+}
+
+                            
+
+.pink {
+  background:pink; 
+}
+
+.credit {
+  background:#f00; 
+}
+
+.creditf {
+  color:#f00; 
+}
+
+
+.white {
+  background:#fff;
+  }
+.chartreuse{
+  background: #CCFF99   ;
+}
+.center {
+   text-align: center;
+}
+.bold {
+font-weight: bold;
+  
+}
+
+#nks_usl_ob {
+float:left;
+width: 50px;
+height: 16px;
+  background: #99fdd6 ;
+  }
+  
+  #no_nks_usl_ob {
+float:left;
+width: 50px;
+height: 16px;
+  background: Khaki ;
+  }
+  
+ 
+th{
+  text-align:center;
+  background-color: lightgray;
+}
+
+.zakaz{
+	background-color: lightgreen;
+	}
+	
+	
+.zakaz_0{
+	background-color: orange;
+	}
+	.zakaz_1{
+	background-color: lightblue;
+	}
+.zakaz_2{
+	background-color: lightgreen;
+	}
+.zakaz_3{
+	background-color: Green;
+	}
+
+
+.zakaz_status{
+	width:100%;
+
+}
+
+.status{
+	width:100%;
+
+}
+select.zakaz_status option[value="0"] {
+  background: orange;
+}
+
+select.zakaz_status option[value="1"] {
+  background: lightblue;
+}
+
+select.zakaz_status option[value="2"] {
+  background: lightgreen;
+}
+
+select.zakaz_status option[value="3"] {
+  background: Green;
+}
+
+select:disabled { 
+background: #ccc;
+color: black;
+ }
+
+
+/*  
+.month1{
+visibility:collapse;
+  
+}
+#month1 {
+ width: 55px;  
+}   
+
+*/
+
+#index {
+	width: 30%;
+}
+
+
+
+
+.col_filename {  width: 40%;
+   word-wrap: break-word;
+      }
+.col_spool {  width: 20%;
+   word-wrap: break-word;
+      }
