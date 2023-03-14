@@ -6,6 +6,8 @@
 from __future__ import annotations
 import logging
 import requests
+import json
+import os
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from typing import Set, Optional, List
@@ -16,8 +18,10 @@ printer_id = ''
 class SpoolEvent:
     def __init__(self, config: ConfigHelper) -> None:
         self.server = config.get_server()
-        global printer_serial 
+        global printer_serial
+        global printer_port 
         printer_serial = config.get('printer_serial')
+        printer_port = config.get('moonraker_port')
         self.server.register_event_handler(
             "history:history_changed", self._history_change)
 
@@ -30,11 +34,23 @@ class SpoolEvent:
             filename = job_data['filename']
             data =  {'printer_serial':printer_serial,
 	            'lenght':filament_used,
-	            'filename':filename}
-
+	            'filename':filename,
+	            'printer_port':str(printer_port)}
             requests.post('http://localhost/sm/put_job.php', data = data) 
+            run_command = "wget -b -q -O /dev/null http://localhost:"+printer_port+"/printer/gcode/script?script=M221%20S100"
+            os.system(run_command)
             logging.info(f"catch job finished - {printer_serial} - {filament_used} - {filename}")
-
+        
+        elif action == 'added':
+    	    data =  {'printer_serial':printer_serial,
+		    'printer_port':str(printer_port)}
+    	    spool_param_json = requests.post('http://localhost/sm/get_spool_param.php', data = data)
+    	    spool_param = json.loads(spool_param_json.text)
+    	    flow = str(spool_param.get('flow'))
+    	    run_command = "wget -b -q -O /dev/null http://localhost:"+printer_port+"/printer/gcode/script?script=M221%20S"+flow
+    	    os.system(run_command)
+    	    logging.info(f"catch job started - {printer_serial} - {printer_port} - {flow}")
+	
 
 
 
