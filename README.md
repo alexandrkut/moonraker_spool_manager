@@ -3,7 +3,7 @@
 В конфиге moonraker.conf нужно добавить секцию
 
 [spool_event]<br>
-printer_serial: UltiSteel
+printer_serial: UltiSteel<br>
 moonraker_port: 7125
 
 Серийный номер принтера и порт Moonraker нужны для многопринтерных систем.
