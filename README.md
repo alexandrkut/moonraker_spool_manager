@@ -4,7 +4,7 @@
 
 [spool_event]<br>
 printer_serial: UltiSteel
-printer_port: 7125
+moonraker_port: 7125
 
 Серийный номер принтера и порт Moonraker нужны для многопринтерных систем.
 
