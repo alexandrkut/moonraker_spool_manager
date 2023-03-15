@@ -71,5 +71,20 @@ $stmt->execute(array($spool_id));
 $name = $stmt->fetchColumn();
 return $name;
 }
+function get_spool_material($spool_id){
+global $pdo;
+$stmt = $pdo->prepare("SELECT material_id FROM spools WHERE id=?");
+$stmt->execute(array($spool_id));
+$name = $stmt->fetchColumn();
+return $name;
+}
+
+function get_material_retr($material_id){
+global $pdo;
+$stmt = $pdo->prepare("SELECT RetLen,RetSp,UnRetExtrLen,UnRetSp FROM materials WHERE id=?");
+$stmt->execute(array($material_id));
+$name = $stmt->fetchAll(PDO::FETCH_ASSOC);
+return $name[0];
+}
 
 ?>
