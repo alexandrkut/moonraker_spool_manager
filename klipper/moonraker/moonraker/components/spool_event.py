@@ -40,7 +40,7 @@ class SpoolEvent:
             #Возврат потока на 100% по окончанию печати
             run_command = "wget -b -q -O /dev/null http://localhost:"+printer_port+"/printer/gcode/script?script=M221%20S100"
             os.system(run_command)
-            run_command = "wget -b -q -O /dev/null http://localhost:"+printer_port+"/printer/gcode/script?script=SET_RETRACTION%20RETRACT_LENGTH=0%20RETRACT_SPEED=0%20UNRETRACT_EXTRA_LENGTH=0%20UNRETRACT_SPEED=0"
+            run_command = "wget -b -q -O /dev/null http://localhost:"+printer_port+"/printer/gcode/script?script=SET_RETRACTION%20RETRACT_LENGTH=0%20RETRACT_SPEED=10%20UNRETRACT_EXTRA_LENGTH=0%20UNRETRACT_SPEED=10"
             os.system(run_command)
             logging.info(f"catch job finished - {printer_serial} - {filament_used} - {filename}")
         
