@@ -21,9 +21,9 @@ echo '<label for="activ_'.$row_p[id].'">Активная катушка '.$row_p
 //echo '<select name="activ_'.$row_p[id].'"  onchange="alert(this.value);">';
 echo '<select name="activ_'.$row_p[id].'"  onchange="set_activ_spool('.$row_p[id].',this.value);">';
 $selected = get_activ_spool($row_p[id]);
-$sql = $pdo->query('select id,material,name,weight from spools_view order by material,name');
+$sql = $pdo->query('select id,material,name,weight,flow from spools_view order by material,name');
 while ($row = $sql->fetch()){
-echo '<option value="'.$row["id"].'"'.($row["id"] == $selected ? " selected=\"selected\">" : ">").$row["material"].' - '.$row["name"].' - '.$row["weight"].'гр.</option><br>';
+echo '<option value="'.$row["id"].'"'.($row["id"] == $selected ? " selected=\"selected\">" : ">").$row["material"].' - '.$row["name"].' - '.$row["weight"].'гр. - F='.$row[flow].'</option><br>';
 }  
 echo '</select>';
 echo '</div>';
@@ -42,24 +42,27 @@ echo '</div>';
       <caption><h2>Катушки</caption>
         
    <tr>
-    
-	<th>Материал</th>
-    <th>Название</th>
-	<th>Вес</th>
 	<th>Принтер</th>
+	<th>Материал</th>
+	<th>Поток</th>
+	<th>Вес</th>
 	<th>Запас</th>
 
     </tr>
 
 <?php
-$sql = $pdo->query('select id,material,name,weight, activ_printer,reserve from spools_view order by material,name');
+$sql = $pdo->query('select id,material,name,weight, activ_printer,reserve,flow from spools_view order by material,name');
 while ($rowz = $sql->fetch()){
 	if (isset($rowz[material])){
 echo '<tr class="center">';
-echo '<td>'.$rowz[material].'</td>';	
-echo '<td>'.$rowz[name].'</td>';	
+echo '<td>'.$rowz[activ_printer].'</td>';
+echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$rowz[id].' style="
+    text-align: left;
+padding-left: 10;
+">'.$rowz[material].' - '.$rowz[name].'</a></td>';
+echo '<td>'.$rowz[flow].'</td>';	
 echo '<td>'.$rowz[weight].'</td>';	
-echo '<td>'.$rowz[activ_printer].'</td>';	
+
 echo '<td>'.$rowz[reserve].'</td>';
 echo  '</tr>';
 	}

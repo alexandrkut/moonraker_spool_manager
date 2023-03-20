@@ -47,6 +47,11 @@ echo '<option value="'.$row["id"].'">'.$row["name"].'</option><br>';
   <label for="reserve">Запас:</label>                            
   <input required type="number" name="reserve" id="reserve"><br>
 </div>
+
+<div class="field">
+  <label for="flow">Поток:</label>                            
+  <input required type="text" name="flow" id="flow"><br>
+</div>
     
 
 
@@ -66,7 +71,7 @@ echo '<option value="'.$row["id"].'">'.$row["name"].'</option><br>';
 echo '<script>';
 if ( $_GET["edit"] == "1"){  
   $edit_id = $_GET["id"];
- $sql = $pdo->prepare("select id,material_id,name,weight,weight_tare,reserve from spools where id = :id");
+ $sql = $pdo->prepare("select id,material_id,name,weight,weight_tare,reserve,flow from spools where id = :id");
 $sql->execute([
 ':id' => $edit_id
 ]);
@@ -77,9 +82,10 @@ $row = $sql->fetch();
 echo 'document.getElementById("id").value="'.$row["id"].'" ; ';
 echo 'document.getElementById("material").value="'.$row["material_id"].'" ; ';
 echo 'document.getElementById("name").value="'.$row["name"].'" ; ';
-echo 'document.getElementById("weight").value="'.$row["weight"].'" ; ';
+echo 'document.getElementById("weight").value="'.round($row["weight"],0).'" ; ';
 echo 'document.getElementById("weight_tare").value="'.$row["weight_tare"].'" ; ';
 echo 'document.getElementById("reserve").value="'.$row["reserve"].'" ; ';
+echo 'document.getElementById("flow").value="'.$row["flow"].'" ; ';
 //echo 'document.getElementById("primech").innerHTML="'.addcslashes($row["primech"], "\r\n").'" ; ';
 
 echo 'document.getElementById("button1").value="Редактировать" ; ';
@@ -95,7 +101,7 @@ echo '</script>';
 if ( $_POST["id"] != "" and $_POST["delete"] != "on"){
 
 	
-$sql = $pdo->prepare("update spools SET material_id = :material, name = :name, weight = :weight, weight_tare = :weight_tare, reserve = :reserve where id = :id ");
+$sql = $pdo->prepare("update spools SET material_id = :material, name = :name, weight = :weight, weight_tare = :weight_tare, reserve = :reserve, flow = :flow where id = :id ");
 //$sql->execute();
 $sql->execute(array(
 ":id" => $_POST[id],
@@ -104,6 +110,7 @@ $sql->execute(array(
 ":weight" => $_POST[weight],
 ":weight_tare" => $_POST[weight_tare],
 ":reserve" => $_POST[reserve],
+":flow" => $_POST[flow],
 ));
 
 
@@ -123,7 +130,7 @@ echo 'document.location.href = "'.$fold.$_SERVER['PHP_SELF'].'"';
 echo '</script>';
 //добавление
 }elseif( $_POST["id"] == "" and $_POST["name"] != "") {
-$sql = $pdo->prepare("insert into spools (material_id, name, weight, weight_tare,reserve)  values( :material, :name, :weight, :weight_tare, :reserve) ");
+$sql = $pdo->prepare("insert into spools (material_id, name, weight, weight_tare,reserve,flow)  values( :material, :name, :weight, :weight_tare, :reserve, :flow) ");
 //$sql->execute();
 $sql->execute(array(
 ":material" => $_POST[material],
@@ -131,6 +138,7 @@ $sql->execute(array(
 ":weight" => $_POST[weight],
 ":weight_tare" => $_POST[weight_tare],
 ":reserve" => $_POST[reserve],
+":flow" => $_POST[flow],
 ));
 echo '<script>';
 echo 'document.location.href = "'.$fold.$_SERVER['PHP_SELF'].'"';
@@ -147,26 +155,32 @@ echo '</script>';
       <caption><h2>Катушки</caption>
         
    <tr>
+	<th>Принтер</th>
     <th>Материал</th>
-    <th>Название</th>
+    <th>Поток</th>
 	<th>Вес</th>
 	<th>Вес тары</th>
-	<th>Принтер</th>
 	<th>Запас</th>
-	<th>Действие</th>
+
     </tr>
 
 <?php
-$sql = $pdo->query('select id,material,name,weight, weight_tare, activ_printer, reserve from spools_view order by material,name');
+$sql = $pdo->query('select id,material,name,weight, weight_tare, activ_printer, reserve, flow from spools_view order by material,name');
 while ($row = $sql->fetch()){
 echo '<tr class="center">';
-echo '<td>'.$row[material].'</td>';	
-echo '<td>'.$row[name].'</td>';	
+echo '<td>'.$row[activ_printer].'</td>';	
+#echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$row[id].'>редактировать</a></td>';
+echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$row[id].' style="
+    text-align: left;
+padding-left: 10;
+">'.$row[material].' - '.$row[name].'</a></td>';	
+#echo '<td>'.$row[name].'</td>';	
+echo '<td>'.$row[flow].'</td>';	
 echo '<td>'.$row[weight].'</td>';	
 echo '<td>'.$row[weight_tare].'</td>';	
-echo '<td>'.$row[activ_printer].'</td>';	
+
 echo '<td>'.$row[reserve].'</td>';	
-echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$row[id].'>редактировать</a></td>';
+
 echo  '</tr>';
 }
   echo '</table>';

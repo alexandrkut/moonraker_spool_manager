@@ -63,6 +63,15 @@ return $name;
 }
 
 
+function get_spool_flow($spool_id){
+global $pdo;
+$stmt = $pdo->prepare('select flow FROM "spools_view" where id=?');
+$stmt->execute(array($spool_id));
+$name = $stmt->fetchColumn();
+return $name;
+}
+
+
 
 function get_filament_density($spool_id){
 global $pdo;
@@ -71,6 +80,7 @@ $stmt->execute(array($spool_id));
 $name = $stmt->fetchColumn();
 return $name;
 }
+
 function get_spool_material($spool_id){
 global $pdo;
 $stmt = $pdo->prepare("SELECT material_id FROM spools WHERE id=?");
