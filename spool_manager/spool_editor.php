@@ -110,7 +110,7 @@ $sql->execute(array(
 ":weight" => $_POST[weight],
 ":weight_tare" => $_POST[weight_tare],
 ":reserve" => $_POST[reserve],
-":flow" => $_POST[flow],
+":flow" => str_replace(',','.',$_POST[flow]),
 ));
 
 
@@ -138,7 +138,7 @@ $sql->execute(array(
 ":weight" => $_POST[weight],
 ":weight_tare" => $_POST[weight_tare],
 ":reserve" => $_POST[reserve],
-":flow" => $_POST[flow],
+":flow" => str_replace(',','.',$_POST[flow]),
 ));
 echo '<script>';
 echo 'document.location.href = "'.$fold.$_SERVER['PHP_SELF'].'"';
