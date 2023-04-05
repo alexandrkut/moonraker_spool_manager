@@ -13,7 +13,7 @@ include "header.php";
 <div>
 <form autocomplete="off" id="form" method="post" action="<?=$_SERVER['PHP_SELF']?>">
 <?php
-$sql_p = $pdo->query('select id,name from printers order by id DESC');
+$sql_p = $pdo->query('select id,name from printers order by id ASC');
 while ($row_p = $sql_p->fetch()){
 echo "<div class=\"field\">";
 echo '<label for="activ_'.$row_p[id].'">Активная катушка '.$row_p[name].'</label>';
