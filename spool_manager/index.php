@@ -23,7 +23,7 @@ echo '<select name="activ_'.$row_p[id].'"  onchange="set_activ_spool('.$row_p[id
 $selected = get_activ_spool($row_p[id]);
 $sql = $pdo->query('select id,material,name,weight,flow from spools_view order by material,name');
 while ($row = $sql->fetch()){
-echo '<option value="'.$row["id"].'"'.($row["id"] == $selected ? " selected=\"selected\">" : ">").$row["material"].' - '.$row["name"].' - '.$row["weight"].'гр. - F='.$row[flow].'</option><br>';
+echo '<option value="'.$row["id"].'"'.($row["id"] == $selected ? " selected=\"selected\">" : ">").$row["material"].' - '.$row["name"].' - '.$row["weight"].'гр. - F='.$row["flow"].'</option><br>';
 }  
 echo '</select>';
 echo '</div>';
@@ -59,11 +59,11 @@ echo '<td>'.$rowz[activ_printer].'</td>';
 echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$rowz[id].' style="
     text-align: left;
 padding-left: 10;
-">'.$rowz[material].' - '.$rowz[name].'</a></td>';
-echo '<td>'.$rowz[flow].'</td>';	
-echo '<td>'.$rowz[weight].'</td>';	
+">'.$rowz["material"].' - '.$rowz["name"].'</a></td>';
+echo '<td>'.$rowz["flow"].'</td>';	
+echo '<td>'.$rowz["weight"].'</td>';	
 
-echo '<td>'.$rowz[reserve].'</td>';
+echo '<td>'.$rowz["reserve"].'</td>';
 echo  '</tr>';
 	}
 }

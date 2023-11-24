@@ -21,27 +21,27 @@ include "header.php";
 
 <div class="field">
   <label for="density">Плотность:</label>                            
-  <input required type="text" name="density" id="density" value="1.1"><br>
+  <input required type="number" step="0.01" name="density" id="density" value="1.1"><br>
 </div>
 
 <div class="field">
   <label for="RetLen">RETRACT_LENGTH:</label>                            
-  <input required type="text" name="RetLen" id="RetLen" value="0"><br>
+  <input required type="number" step="0.1" name="RetLen" id="RetLen" value="0"><br>
 </div>
 
 <div class="field">
   <label for="RetSp">RETRACT_SPEED:</label>                            
-  <input required type="text" name="RetSp" id="RetSp" value="0"><br>
+  <input required type="number" name="RetSp" id="RetSp" value="0"><br>
 </div>
 
 <div class="field">
   <label for="UnRetExtrLen">UNRETRACT_EXTRA_LENGTH:</label>                            
-  <input required type="text" name="UnRetExtrLen" id="UnRetExtrLen" value="0"><br>
+  <input required type="number" step="0.1" name="UnRetExtrLen" id="UnRetExtrLen" value="0"><br>
 </div>
 
 <div class="field">
   <label for="UnRetSp">UNRETRACT_SPEED:</label>                            
-  <input required type="text" name="UnRetSp" id="UnRetSp" value="0"><br>
+  <input required type="number" name="UnRetSp" id="UnRetSp" value="0"><br>
 </div>
 
 
@@ -94,13 +94,13 @@ if ( $_POST["id"] != "" and $_POST["delete"] != "on"){
 $sql = $pdo->prepare("update materials SET name = :name, density = :density, RetLen = :RetLen, RetSp = :RetSp, UnRetExtrLen = :UnRetExtrLen, UnRetSp = :UnRetSp    where id = :id ");
 //$sql->execute();
 $sql->execute(array(
-":id" => $_POST[id],
-":name" => $_POST[name],
-":density" => $_POST[density],
-":RetLen" => $_POST[RetLen],
-":RetSp" => $_POST[RetSp],
-":UnRetExtrLen" => $_POST[UnRetExtrLen],
-":UnRetSp" => $_POST[UnRetSp],
+":id" => $_POST["id"],
+":name" => $_POST["name"],
+":density" => $_POST["density"],
+":RetLen" => $_POST["RetLen"],
+":RetSp" => $_POST["RetSp"],
+":UnRetExtrLen" => $_POST["UnRetExtrLen"],
+":UnRetSp" => $_POST["UnRetSp"],
 ));
 
 
@@ -123,12 +123,12 @@ echo '</script>';
 $sql = $pdo->prepare("insert into materials (name, density, RetLen, RetSp, UnRetExtrLen, UnRetSp )  values(:name, :density, :RetLen, :RetSp, :UnRetExtrLen, :UnRetSp  ) ");
 //$sql->execute();
 $sql->execute(array(
-":name" => $_POST[name],
-":density" => $_POST[density],
-":RetLen" => $_POST[RetLen],
-":RetSp" => $_POST[RetSp],
-":UnRetExtrLen" => $_POST[UnRetExtrLen],
-":UnRetSp" => $_POST[UnRetSp],
+":name" => $_POST["name"],
+":density" => $_POST["density"],
+":RetLen" => $_POST["RetLen"],
+":RetSp" => $_POST["RetSp"],
+":UnRetExtrLen" => $_POST["UnRetExtrLen"],
+":UnRetSp" => $_POST["UnRetSp"],
 ));
 echo '<script>';
 echo 'document.location.href = "'.$fold.$_SERVER['PHP_SELF'].'"';
@@ -158,11 +158,11 @@ $sql = $pdo->query('select id,name,density,RetLen,RetSp,UnRetExtrLen,UnRetSp fro
 while ($row = $sql->fetch()){
 echo '<tr class="center">';
 echo '<td><a class="edit_button" href=material_editor.php?edit=1&id='.$row[id].'>'.$row[name].'</a></td>';	
-echo '<td>'.$row[density].'</td>';	
-echo '<td>'.$row[RetLen].'</td>';	
-echo '<td>'.$row[RetSp].'</td>';	
-echo '<td>'.$row[UnRetExtrLen].'</td>';	
-echo '<td>'.$row[UnRetSp].'</td>';	
+echo '<td>'.$row["density"].'</td>';	
+echo '<td>'.$row["RetLen"].'</td>';	
+echo '<td>'.$row["RetSp"].'</td>';	
+echo '<td>'.$row["UnRetExtrLen"].'</td>';	
+echo '<td>'.$row["UnRetSp"].'</td>';	
 
 echo  '</tr>';
 }

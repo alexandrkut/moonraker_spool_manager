@@ -1,5 +1,7 @@
 <?php
 include "header.php";
+define ("id","1");
+define ("edit","edit");
 ?>
 
 <body>
@@ -50,7 +52,7 @@ echo '<option value="'.$row["id"].'">'.$row["name"].'</option><br>';
 
 <div class="field">
   <label for="flow">Поток:</label>                            
-  <input required type="text" name="flow" id="flow"><br>
+  <input required type="number" step="0.01" name="flow" id="flow"><br>
 </div>
     
 
@@ -104,13 +106,13 @@ if ( $_POST["id"] != "" and $_POST["delete"] != "on"){
 $sql = $pdo->prepare("update spools SET material_id = :material, name = :name, weight = :weight, weight_tare = :weight_tare, reserve = :reserve, flow = :flow where id = :id ");
 //$sql->execute();
 $sql->execute(array(
-":id" => $_POST[id],
-":material" => $_POST[material],
-":name" => $_POST[name],
-":weight" => $_POST[weight],
-":weight_tare" => $_POST[weight_tare],
-":reserve" => $_POST[reserve],
-":flow" => str_replace(',','.',$_POST[flow]),
+":id" => $_POST["id"],
+":material" => $_POST["material"],
+":name" => $_POST["name"],
+":weight" => $_POST["weight"],
+":weight_tare" => $_POST["weight_tare"],
+":reserve" => $_POST["reserve"],
+":flow" => str_replace(',','.',$_POST["flow"]),
 ));
 
 
@@ -133,12 +135,12 @@ echo '</script>';
 $sql = $pdo->prepare("insert into spools (material_id, name, weight, weight_tare,reserve,flow)  values( :material, :name, :weight, :weight_tare, :reserve, :flow) ");
 //$sql->execute();
 $sql->execute(array(
-":material" => $_POST[material],
-":name" => $_POST[name],
-":weight" => $_POST[weight],
-":weight_tare" => $_POST[weight_tare],
-":reserve" => $_POST[reserve],
-":flow" => str_replace(',','.',$_POST[flow]),
+":material" => $_POST["material"],
+":name" => $_POST["name"],
+":weight" => $_POST["weight"],
+":weight_tare" => $_POST["weight_tare"],
+":reserve" => $_POST["reserve"],
+":flow" => $_POST["flow"],
 ));
 echo '<script>';
 echo 'document.location.href = "'.$fold.$_SERVER['PHP_SELF'].'"';
@@ -173,13 +175,13 @@ echo '<td>'.$row[activ_printer].'</td>';
 echo '<td><a class="edit_button" href=spool_editor.php?edit=1&id='.$row[id].' style="
     text-align: left;
 padding-left: 10;
-">'.$row[material].' - '.$row[name].'</a></td>';	
-#echo '<td>'.$row[name].'</td>';	
-echo '<td>'.$row[flow].'</td>';	
-echo '<td>'.$row[weight].'</td>';	
-echo '<td>'.$row[weight_tare].'</td>';	
+">'.$row["material"].' - '.$row["name"].'</a></td>';	
+#echo '<td>'.$row["name"].'</td>';	
+echo '<td>'.$row["flow"].'</td>';	
+echo '<td>'.$row["weight"].'</td>';	
+echo '<td>'.$row["weight_tare"].'</td>';	
 
-echo '<td>'.$row[reserve].'</td>';	
+echo '<td>'.$row["reserve"].'</td>';	
 
 echo  '</tr>';
 }
